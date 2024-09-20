@@ -24,10 +24,10 @@ jobs:
     - name: Build
       run: |
         make CC=x86_64-w64-mingw32-gcc -f Makefile platform=windows
-    - name: List files
-      run: ls -R
+    - name: Find the generated DLL
+      run: find . -name "*.dll"
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
         name: build-output
-        path: ./path/to/correct/file.dll  # Atualize o caminho após ver os resultados da listagem
+        path: ./path/to/found/file.dll  # Substitua pelo caminho encontrado
