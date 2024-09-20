@@ -19,6 +19,8 @@ jobs:
         install: > 
           mingw-w64-x86_64-gcc
           make
+    - name: Add MSYS2 to PATH
+      run: echo "::add-path::C:/msys64/mingw64/bin"
     - name: Build
       run: |
         make -f Makefile platform=windows
