@@ -24,10 +24,8 @@ jobs:
     - name: Build
       run: |
         make CC=x86_64-w64-mingw32-gcc -f Makefile platform=windows
-    - name: Find the generated DLL
-      run: Get-ChildItem -Recurse -Filter *.dll
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
         name: build-output
-        path: ./path/to/found/file.dll  # Substitua pelo caminho encontrado
+        path: D:/a/opera-libretro/opera-libretro/opera_libretro.dll
