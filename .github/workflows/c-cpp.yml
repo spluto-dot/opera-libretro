@@ -1,0 +1,21 @@
+name: Windows Build
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up MSYS2
+      uses: msys2/setup-msys2@v2
+    - name: Build
+      run: |
+        pacman -Syu --noconfirm
+        pacman -S --noconfirm make mingw-w64-x86_64-gcc
+        make -f Makefile platform=windows
