@@ -23,4 +23,5 @@ jobs:
       run: echo "C:/msys64/mingw64/bin" >> $GITHUB_PATH
     - name: Build
       run: |
+        x86_64-w64-mingw32-gcc -v
         make -f Makefile platform=windows
