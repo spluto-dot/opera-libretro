@@ -14,8 +14,11 @@ jobs:
     - uses: actions/checkout@v2
     - name: Set up MSYS2
       uses: msys2/setup-msys2@v2
+      with:
+        update: true
+    - name: Install dependencies
+      run: |
+        pacman -S --noconfirm make mingw-w64-x86_64-gcc
     - name: Build
       run: |
-        pacman -Syu --noconfirm
-        pacman -S --noconfirm make mingw-w64-x86_64-gcc
         make -f Makefile platform=windows
