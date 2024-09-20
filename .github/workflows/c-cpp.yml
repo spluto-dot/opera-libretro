@@ -25,7 +25,7 @@ jobs:
       run: |
         make CC=x86_64-w64-mingw32-gcc -f Makefile platform=windows
     - name: Find the generated DLL
-      run: find . -name "*.dll"
+      run: dir /s /b *.dll
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
