@@ -30,4 +30,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: build-output
-        path: ./path/to/correct/file.dll
+        path: ./path/to/correct/file.dll  # Atualize o caminho após ver os resultados da listagem
