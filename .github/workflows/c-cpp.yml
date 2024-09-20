@@ -24,6 +24,8 @@ jobs:
     - name: Build
       run: |
         make CC=x86_64-w64-mingw32-gcc -f Makefile platform=windows
+    - name: List files
+      run: ls -R
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
