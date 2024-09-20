@@ -19,13 +19,15 @@ jobs:
         install: > 
           mingw-w64-x86_64-gcc
           make
+    - name: Set CC environment variable
+      run: echo "CC=x86_64-w64-mingw32-gcc" >> $GITHUB_ENV
     - name: Add MSYS2 to PATH
       run: echo "C:/msys64/mingw64/bin" >> $GITHUB_PATH
     - name: Build
       run: |
-        make CC=x86_64-w64-mingw32-gcc -f Makefile platform=windows
+        make -f Makefile platform=windows
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
         name: build-output
-        path: ./path/to/output/file.dll
+        path: ./path/to/correct/file.dll  # Atualize o caminho aqui
