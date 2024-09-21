@@ -15,7 +15,7 @@ uint8_t
 poll_joypad(const int port_,
             const int id_)
 {
-  return retro_input_state_cb(port_,RETRO_DEVICE_JOYPAD,0,id_);
+  return retro_input_state_cb(port_,RETRO_DEVICE_JOYPAD,1,id_);
 }
 
 static
