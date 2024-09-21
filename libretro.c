@@ -55,25 +55,25 @@ static
 void
 retro_environment_set_controller_info(void)
 {
-  static const struct retro_controller_description port[] =
+  static const struct retro_controller_description joypad_only[] =
     {
-     { "3DO Joypad", RETRO_DEVICE_JOYPAD },
+      { "3DO Joypad", RETRO_DEVICE_JOYPAD },
     };
 
   static const struct retro_controller_info ports[LR_INPUT_MAX_DEVICES+1] =
     {
-     {port, 1},
-     {port, 1},
-     {port, 1},
-     {port, 1},
-     {port, 1},
-     {port, 1},
-     {port, 1},
-     {port, 1},
-     {NULL, 0}
+      { joypad_only, 1 },
+      { joypad_only, 1 },
+      { joypad_only, 1 },
+      { joypad_only, 1 },
+      { joypad_only, 1 },
+      { joypad_only, 1 },
+      { joypad_only, 1 },
+      { joypad_only, 1 },
+      { NULL, 0 }
     };
 
-  retro_environment_cb(RETRO_ENVIRONMENT_SET_CONTROLLER_INFO,(void*)ports);
+  retro_environment_cb(RETRO_ENVIRONMENT_SET_CONTROLLER_INFO, (void*)ports);
 }
 
 static
