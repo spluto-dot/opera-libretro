@@ -55,25 +55,30 @@ static
 void
 retro_environment_set_controller_info(void)
 {
-  static const struct retro_controller_description joypad_only[] =
+  static const struct retro_controller_description port[] =
     {
-      { "3DO Joypad", RETRO_DEVICE_JOYPAD },
+     { "3DO Joypad",        RETRO_DEVICE_JOYPAD },
+     { "3DO Flightstick",   RETRO_DEVICE_FLIGHTSTICK },
+     { "3DO Mouse",         RETRO_DEVICE_MOUSE  },
+     { "3DO Lightgun",      RETRO_DEVICE_LIGHTGUN },
+     { "Arcade Lightgun",   RETRO_DEVICE_ARCADE_LIGHTGUN },
+     { "Orbatak Trackball", RETRO_DEVICE_ORBATAK_TRACKBALL },
     };
 
   static const struct retro_controller_info ports[LR_INPUT_MAX_DEVICES+1] =
     {
-      { joypad_only, 1 },
-      { joypad_only, 1 },
-      { joypad_only, 1 },
-      { joypad_only, 1 },
-      { joypad_only, 1 },
-      { joypad_only, 1 },
-      { joypad_only, 1 },
-      { joypad_only, 1 },
-      { NULL, 0 }
+     {port, 6},
+     {port, 6},
+     {port, 6},
+     {port, 6},
+     {port, 6},
+     {port, 6},
+     {port, 6},
+     {port, 6},
+     {NULL, 0}
     };
 
-  retro_environment_cb(RETRO_ENVIRONMENT_SET_CONTROLLER_INFO, (void*)ports);
+  retro_environment_cb(RETRO_ENVIRONMENT_SET_CONTROLLER_INFO,(void*)ports);
 }
 
 static
