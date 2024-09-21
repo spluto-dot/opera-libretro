@@ -15,7 +15,7 @@ setup_joypad_desc(struct retro_input_descriptor *desc_,
 {
   desc_->port        = port_;
   desc_->device      = RETRO_DEVICE_JOYPAD;
-  desc_->index       = 0;
+  desc_->index       = 1;
   desc_->id          = id_;
   desc_->description = str_;
 
