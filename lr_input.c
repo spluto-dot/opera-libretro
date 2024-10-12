@@ -223,29 +223,9 @@ static
 void
 lr_input_poll(const int port_)
 {
-  switch(PBUS_DEVICES[port_])
-    {
-    case RETRO_DEVICE_NONE:
-      break;
-    default:
-    case RETRO_DEVICE_JOYPAD:
-      lr_input_poll_joypad(port_);
-      return;
-    case RETRO_DEVICE_FLIGHTSTICK:
-      lr_input_poll_flightstick(port_);
-      break;
-    case RETRO_DEVICE_MOUSE:
-      lr_input_poll_mouse(port_);
-      break;
-    case RETRO_DEVICE_LIGHTGUN:
-      lr_input_poll_lightgun(port_);
-      break;
-    case RETRO_DEVICE_ARCADE_LIGHTGUN:
-      lr_input_poll_arcade_lightgun(port_);
-      break;
-    case RETRO_DEVICE_ORBATAK_TRACKBALL:
-      lr_input_poll_orbatak_trackball(port_);
-      break;
+    // Prioriza o Joypad
+    if (PBUS_DEVICES[port_] == RETRO_DEVICE_JOYPAD) {
+        lr_input_poll_joypad(port_);
     }
 }
 
