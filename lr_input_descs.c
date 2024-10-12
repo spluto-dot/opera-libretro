@@ -210,13 +210,47 @@ setup_orbatak_descs(struct retro_input_descriptor *desc_,
   return rv;
 }
 
-void lr_input_device_set_with_descs(const uint32_t port_, const uint32_t device_) {
-    if (port_ == 0) {  // Verifica se a porta é a P1 (geralmente a porta 0)
-        lr_input_device_set(port_, RETRO_DEVICE_JOYPAD);  // Define o Joypad como o dispositivo do P1
-        struct retro_input_descriptor desc[256];
-        uint32_t rv = setup_joypad_descs(&desc[0], port_);
-        memset(&desc[rv], 0, sizeof(struct retro_input_descriptor));
-        retro_environment_cb(RETRO_ENVIRONMENT_SET_INPUT_DESCRIPTORS, desc);
-    }
-}
+void
+lr_input_device_set_with_descs(const uint32_t port_,
+                               const uint32_t device_)
+{
+  uint32_t i;
+  uint32_t rv;
+  struct retro_input_descriptor desc[256];
 
+  lr_input_device_set(port_,device_);
+
+  rv = 0;
+  lr_input_crosshair_reset(port_);
+  for(i = 0; i < LR_INPUT_MAX_DEVICES; i++)
+    {
+      switch(lr_input_device_get(i))
+        {
+        case RETRO_DEVICE_NONE:
+          break;
+        default:
+        case RETRO_DEVICE_JOYPAD:
+          rv += setup_joypad_descs(&desc[rv],i);
+          break;
+        case RETRO_DEVICE_FLIGHTSTICK:
+          rv += setup_flightstick_descs(&desc[rv],i);
+          break;
+        case RETRO_DEVICE_MOUSE:
+          rv += setup_mouse_descs(&desc[rv],i);
+          break;
+        case RETRO_DEVICE_LIGHTGUN:
+          rv += setup_lightgun_descs(&desc[rv],i);
+          break;
+        case RETRO_DEVICE_ARCADE_LIGHTGUN:
+          rv += setup_lightgun_arcade_descs(&desc[rv],i);
+          break;
+        case RETRO_DEVICE_ORBATAK_TRACKBALL:
+          rv += setup_orbatak_descs(&desc[rv],i);
+          break;
+        }
+    }
+
+  memset(&desc[rv],0,sizeof(struct retro_input_descriptor));
+
+  retro_environment_cb(RETRO_ENVIRONMENT_SET_INPUT_DESCRIPTORS,desc);
+}
