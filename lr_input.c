@@ -225,11 +225,12 @@ lr_input_poll(const int port_)
 {
   switch(PBUS_DEVICES[port_])
     {
-    case RETRO_DEVICE_JOYPAD:  // Substitui RETRO_DEVICE_NONE
-      lr_input_poll_joypad(port_);
+    case RETRO_DEVICE_NONE:
       break;
     default:
-      break;
+    case RETRO_DEVICE_JOYPAD:
+      lr_input_poll_joypad(port_);
+      return;
     case RETRO_DEVICE_FLIGHTSTICK:
       lr_input_poll_flightstick(port_);
       break;
