@@ -250,9 +250,9 @@ lr_input_poll(const int port_)
 }
 
 void lr_input_device_set(const uint32_t port_, const uint32_t device_) {
-  printf("lr_input_device_set called with port: %u, device: %u\n", port_, device_);
-  PBUS_DEVICES[port_] = device_;
+    PBUS_DEVICES[port_] = device_; // Armazena o tipo do dispositivo na porta específica
 }
+
 
 uint32_t
 lr_input_device_get(const uint32_t port_)
