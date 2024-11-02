@@ -651,3 +651,7 @@ endif
 
 print-%:
 	@echo '$*=$($*)'
+
+test:
+    gcc -o test_loader.exe test_loader.c -L. -lopera_libretro
+    ./test_loader.exe
