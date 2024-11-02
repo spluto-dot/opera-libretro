@@ -1,5 +1,6 @@
 #include <windows.h>
 #include <stdio.h>
+#include <stdint.h>
 
 typedef void (*lr_input_device_set_func)(const uint32_t, const uint32_t);
 
@@ -17,7 +18,7 @@ int main() {
         return 1;
     }
 
-    lr_input_device_set(0, 1);  // Teste da função
+    lr_input_device_set(0, 1);
     FreeLibrary(dll);
     return 0;
 }
