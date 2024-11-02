@@ -1,3 +1,16 @@
+// No topo do arquivo lr_input.c
+
+#include <stdint.h>
+#include <stdio.h>
+
+// Se você estiver usando C++, adicione extern "C" para evitar mudanças de nome
+extern "C" __declspec(dllexport) void lr_input_device_set(const uint32_t port_, const uint32_t device_);
+
+// Implementação da função
+__declspec(dllexport) void lr_input_device_set(const uint32_t port_, const uint32_t device_) {
+    // Código da função
+}
+
 #include "lr_input.h"
 #include "lr_input_crosshair.h"
 
@@ -218,8 +231,6 @@ lr_input_poll_orbatak_trackball(const int port_)
 
   opera_pbus_add_orbatak_trackball(&tb);
 }
-
-#include <stdio.h> // Certifique-se de que isso está incluído no início do arquivo
 
 static
 void
