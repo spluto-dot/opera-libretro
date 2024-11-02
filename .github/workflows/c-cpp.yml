@@ -1,0 +1,31 @@
+name: Windows Build
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up MSYS2
+      uses: msys2/setup-msys2@v2
+      with:
+        update: true
+        install: > 
+          mingw-w64-x86_64-gcc
+          make
+    - name: Add MSYS2 to PATH
+      run: echo "C:/msys64/mingw64/bin" >> $GITHUB_PATH
+    - name: Build
+      run: |
+        make CC=x86_64-w64-mingw32-gcc -f Makefile platform=windows
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: build-output
+        path: D:/a/opera-libretro/opera-libretro/opera_libretro.dll
