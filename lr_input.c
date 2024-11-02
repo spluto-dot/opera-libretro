@@ -1,9 +1,9 @@
 #include <stdint.h>
 #include <stdio.h>
 
-// Exporta a função para ser utilizada fora da DLL
+// Exporta a função para uso fora da DLL
 __declspec(dllexport) void lr_input_device_set(const uint32_t port_, const uint32_t device_) {
-    // Coloque a lógica da função aqui, ou deixe como está se não houver necessidade de alteração
+    // Implementação da função aqui
 }
 
 #include "lr_input.h"
@@ -257,10 +257,6 @@ lr_input_poll(const int port_)
         lr_input_poll_orbatak_trackball(port_);
         break;
     }
-}
-
-void lr_input_device_set(const uint32_t port_, const uint32_t device_) {
-    PBUS_DEVICES[port_] = device_; // Armazena o tipo do dispositivo na porta específica
 }
 
 uint32_t
