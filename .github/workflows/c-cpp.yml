@@ -28,9 +28,9 @@ jobs:
       run: |
         make CC=x86_64-w64-mingw32-gcc -f Makefile platform=windows
     
-- name: Test DLL
-  run: |
-    make -f Makefile test
+    - name: Test DLL
+      run: |
+        make -f Makefile test
     
     - name: Upload artifact
       uses: actions/upload-artifact@v3
