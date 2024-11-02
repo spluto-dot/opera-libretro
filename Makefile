@@ -650,15 +650,9 @@ clean:
 endif
 
 print-%:
-	@echo '$*=$($*)'
-
-# Outras definições e alvos que você tenha antes...
-
-# Alvo de compilação para a biblioteca principal
-build:
-	x86_64-w64-mingw32-gcc -shared -o opera_libretro.dll <seus_arquivos.c> -L. -lopera_libretro
+	@echo '$*=$($*)
 
 # Alvo de teste
-test:
+	test:
 	gcc -o test_loader.exe test_loader.c -L. -lopera_libretro
 	./test_loader.exe
