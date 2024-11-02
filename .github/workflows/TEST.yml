@@ -1,0 +1,23 @@
+name: Linux Build and Run for Debugging
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Install Dependencies
+      run: sudo apt-get update && sudo apt-get install -y gcc make
+
+    - name: Build and Run with Debugging Output
+      run: |
+        make -f Makefile  # Compile o projeto
+        ./seu_executavel  # Substitua pelo nome do executável gerado
