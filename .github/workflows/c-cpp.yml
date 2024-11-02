@@ -1,4 +1,4 @@
-name: Windows Build
+name: Windows Build and Test
 
 on:
   push:
@@ -12,7 +12,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
     - name: Set up MSYS2
       uses: msys2/setup-msys2@v2
       with:
@@ -20,20 +19,14 @@ jobs:
         install: > 
           mingw-w64-x86_64-gcc
           make
-    
     - name: Add MSYS2 to PATH
       run: echo "C:/msys64/mingw64/bin" >> $GITHUB_PATH
-    
     - name: Build DLL
       run: |
         make CC=x86_64-w64-mingw32-gcc -f Makefile platform=windows
-    
-    - name: Compile test_loader
-      run: gcc -o test_loader.exe test_loader.c -L. -lopera_libretro
-    
-    - name: Run test_loader
-      run: ./test_loader.exe
-    
+    - name: Test DLL
+      run: |
+        make test
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
