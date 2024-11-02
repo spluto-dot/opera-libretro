@@ -219,41 +219,42 @@ lr_input_poll_orbatak_trackball(const int port_)
   opera_pbus_add_orbatak_trackball(&tb);
 }
 
+#include <stdio.h> // Certifique-se de que isso está incluído no início do arquivo
+
 static
 void
 lr_input_poll(const int port_)
 {
-  switch(PBUS_DEVICES[port_])
+    printf("Dispositivo no port %d: %d\n", port_, PBUS_DEVICES[port_]); // Adiciona uma linha de debug aqui
+
+    switch(PBUS_DEVICES[port_])
     {
     case RETRO_DEVICE_NONE:
-      break;
+        break;
     default:
     case RETRO_DEVICE_JOYPAD:
-      lr_input_poll_joypad(port_);
-      return;
+        lr_input_poll_joypad(port_);
+        return;
     case RETRO_DEVICE_FLIGHTSTICK:
-      lr_input_poll_flightstick(port_);
-      break;
+        lr_input_poll_flightstick(port_);
+        break;
     case RETRO_DEVICE_MOUSE:
-      lr_input_poll_mouse(port_);
-      break;
+        lr_input_poll_mouse(port_);
+        break;
     case RETRO_DEVICE_LIGHTGUN:
-      lr_input_poll_lightgun(port_);
-      break;
+        lr_input_poll_lightgun(port_);
+        break;
     case RETRO_DEVICE_ARCADE_LIGHTGUN:
-      lr_input_poll_arcade_lightgun(port_);
-      break;
+        lr_input_poll_arcade_lightgun(port_);
+        break;
     case RETRO_DEVICE_ORBATAK_TRACKBALL:
-      lr_input_poll_orbatak_trackball(port_);
-      break;
+        lr_input_poll_orbatak_trackball(port_);
+        break;
     }
 }
 
-#include <stdio.h>  // Inclua esta linha se ainda não estiver no topo do arquivo
-
 void lr_input_device_set(const uint32_t port_, const uint32_t device_) {
-    printf("lr_input_device_set called with port: %u, device: %u\n", port_, device_);
-    // Resto do código da função
+    PBUS_DEVICES[port_] = device_; // Armazena o tipo do dispositivo na porta específica
 }
 
 uint32_t
